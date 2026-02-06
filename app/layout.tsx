@@ -39,6 +39,10 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${bodoniModa.variable} ${greatVibes.variable} ${permanentMarker.variable}`}
     >
+      <head>
+        <title>Will You Be My Valentine?</title>
+        <link rel="preload" href="/your-video.mp4" as="video" type="video/mp4"/>
+      </head>
       <body className="antialiased">
         {children}
       </body>
