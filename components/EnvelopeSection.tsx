@@ -31,13 +31,13 @@ export default function EnvelopeSection() {
     setStep('animating-open');
 
     // 1. FRAME ANIMATION (0 -> 3)
-    setTimeout(() => setOpenFrame(1), 100);
-    setTimeout(() => setOpenFrame(2), 200);
+    setTimeout(() => setOpenFrame(1), 300);
+    setTimeout(() => setOpenFrame(2), 400);
     setTimeout(() => {
         setOpenFrame(3); // Fully Open
         // 2. TRIGGER THE SWAP (Envelope Down, Paper Up)
-        setTimeout(() => setStep('extracting'), 300);
-    }, 300);
+        setTimeout(() => setStep('extracting'), 500);
+    }, 500);
 
     // 3. FINAL STATE (Envelope to Side)
     setTimeout(() => {
@@ -104,7 +104,7 @@ export default function EnvelopeSection() {
          <h2 className="font-script text-white/80 text-4xl md:text-6xl -rotate-6 translate-y-8 z-10 drop-shadow-lg">
             will you be my
          </h2>
-         <h1 className="font-serif text-[5rem] md:text-[10rem] leading-none text-metallic tracking-tighter z-0">
+         <h1 className="font-serif text-[3.15rem] md:text-[10rem] leading-none text-metallic tracking-tighter z-0">
             VALENTINE?
          </h1>
       </div>
@@ -141,21 +141,21 @@ export default function EnvelopeSection() {
             animate={
                 step === 'idle' || step === 'animating-open' ? { x: 0, y: 0, opacity: 1, rotate: 0 } :
                 step === 'extracting' ? { y: 400, opacity: 0 } : 
-                step === 'reading' ? { x: isLargeScreen ? 300 : 200, y: 0, opacity: 1, rotate: 90 } : {}
+                step === 'reading' ? { x: isLargeScreen ? 300 : 120, y: 0, opacity: 1, rotate: 90 } : {}
             }
             transition={{ duration: 0.8, ease: "easeInOut" }}
         >
              <img 
                 src={`/envelope-${step === 'reading' ? '0' : openFrame}.png`}
                 alt="Envelope"
-                className="w-[800px] md:w-[1000px] h-auto object-contain drop-shadow-2xl cursor-pointer"
+                className="w-[250px] md:w-[500px] h-auto object-contain drop-shadow-2xl cursor-pointer"
                 onClick={handleOpen}
              />
         </motion.div>
 
         {/* 2. THE PAPER */}
         <motion.div
-            className="absolute w-[320px] md:w-[450px] md:min-h-[500px] min-h-[400px]  shadow-2xl flex flex-col items-center p-8 origin-center"
+            className="absolute w-[200px] md:w-[450px] md:min-h-[500px] min-h-[250px]  shadow-2xl flex flex-col items-center md:p-8 p-4 origin-center"
             style={{ 
                 backgroundImage: 'url(/letter-texture.jpg)',
                 backgroundSize: 'cover',
@@ -173,13 +173,13 @@ export default function EnvelopeSection() {
         >
              {/* LETTER HEADER */}
              <div className="w-full border-b-2 border-black/10 pb-4 mb-6">
-                <h2 className="text-5xl font-handwritten text-black self-start -rotate-1">
+                <h2 className="text-lg md:text-2xl font-handwritten text-black self-start -rotate-1">
                     My Sweet Mama,
                 </h2>
              </div>
 
              {/* LETTER BODY */}
-             <p className="text-2xl md:text-3xl font-handwritten text-gray-800 leading-relaxed mb-10 w-full">
+             <p className="text-md md:text-3xl font-handwritten text-gray-800 leading-relaxed mb-10 w-full">
                I have a very pressing question to ask you...<br/>
                <span className="bg-yellow-100/60 px-2 box-decoration-clone">
                  Will you be my Valentine?
@@ -187,27 +187,27 @@ export default function EnvelopeSection() {
             </p>
 
             {/* CHECKBOXES */}
-            <div className="flex flex-col gap-6 w-full pl-4 mt-auto pb-4">
+            <div className="flex flex-col md:gap-6 gap-2 w-full pl-4 mt-auto pb-4">
                 
                 {/* YES */}
                 <motion.div 
-                    className="flex items-center gap-6 cursor-pointer group"
+                    className="flex items-center md:gap-6 gap-2 cursor-pointer group"
                     onClick={handleYes}
                     whileHover={{ scale: 1.02 + (rejectionCount * 0.1) }}
                     style={{ scale: 1 + (rejectionCount * 0.1) }}
                 >
-                    <div className="w-10 h-10 border-4 border-black rounded-md flex items-center justify-center"></div>
-                    <span className="font-handwritten text-3xl md:text-4xl text-black font-bold">
+                    <div className="w-5 h-5 md:w-10 md:h-10 border-3 md:border-4 border-black rounded-md flex items-center justify-center"></div>
+                    <span className="font-handwritten text-lg md:text-4xl text-black md:font-bold">
                         Yes baby!
                     </span>
                 </motion.div>
 
                 {/* NO */}
-                <div className="flex items-center gap-6 cursor-pointer group" onClick={handleNo} style={{ scale: 1 - (rejectionCount * 0.1) }}>
-                    <div className="w-10 h-10 border-4 border-black rounded-md relative flex items-center justify-center">
+                <div className="flex items-center gap-2 md:gap-6 cursor-pointer group" onClick={handleNo} style={{ scale: 1 - (rejectionCount * 0.1) }}>
+                    <div className="w-5 h-5 md:w-10 md:h-10 border-3 md:border-4 border-black rounded-md relative flex items-center justify-center">
                          {rejectionCount > 0 && <span className="text-red-600 font-bold text-4xl">✕</span>}
                     </div>
-                    <span className="font-handwritten text-3xl md:text-4xl text-gray-800 decoration-wavy group-hover:text-red-600 transition-colors">
+                    <span className="font-handwritten text-lg md:text-4xl text-gray-800 decoration-wavy group-hover:text-red-600 transition-colors">
                         {currentNo}
                     </span>
                 </div>

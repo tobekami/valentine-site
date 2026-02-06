@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 
 export default function HeroSection() {
   return (
@@ -8,11 +9,12 @@ export default function HeroSection() {
       
       {/* 1. BACKGROUND IMAGE (Pink Hearts) */}
       <div className="absolute inset-0 z-0">
-        <img 
-            src="/hero-bg.png" 
-            alt="Romantic Background" 
-            className="w-full h-full object-cover opacity-90" // Slightly reduced opacity if needed
-        />
+      <Image 
+        src="/hero-bg.png" 
+        alt="Romantic Background" 
+        fill // This makes it fill the container automatically
+        priority // This tells Next.js to load this IMAGE FIRST
+        className="object-cover opacity-90"/>
         {/* Optional: Very subtle white overlay to make sure Black text pops */}
         <div className="absolute inset-0 bg-white/20" /> 
       </div>
@@ -22,9 +24,9 @@ export default function HeroSection() {
         <motion.span
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: 0.75, ease: "easeOut" }}
           // CHANGED: text-white -> text-black
-          className="text-9xl font-script text-black mb-2 md:mb-4 drop-shadow-sm"
+          className="text-8xl font-script text-black mb-2 md:mb-4 drop-shadow-sm"
         >
           Hey
         </motion.span>
@@ -32,9 +34,9 @@ export default function HeroSection() {
         <motion.span
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.75, delay: 0.5, ease: "easeOut" }}
           // CHANGED: text-white -> text-black
-          className="text-9xl font-script text-black drop-shadow-sm"
+          className="text-8xl font-script text-black drop-shadow-sm"
         >
           Enny!
         </motion.span>
