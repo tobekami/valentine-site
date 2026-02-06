@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* 1. Override the default 'font-serif' to use Bodoni 
+     2. Create new 'font-script' for Great Vibes
+     3. Create new 'font-handwritten' for Permanent Marker
+  */
+  --font-serif: var(--font-bodoni), serif;
+  --font-script: var(--font-great-vibes), cursive;
+  --font-handwritten: var(--font-permanent-marker), cursive;
+
+  /* You can also define your colors here if you want to be fully v4 compliant */
+  --color-metallic: #B8B8B8;
+  --background-image-curtain: linear-gradient(90deg, #8B0000 0%, #DC143C 20%, #8B0000 40%, #DC143C 60%, #8B0000 80%, #DC143C 100%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* RED CURTAIN TEXTURE */
+.bg-curtain {
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      #8B0000 0px,
+      #A52A2A 10px,
+      #8B0000 20px,
+      #DC143C 30px,
+      #8B0000 40px,
+      #A52A2A 50px,
+      #8B0000 60px
+    );
+  position: relative;
+}
+
+.bg-curtain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(
+      ellipse at center top,
+      rgba(0, 0, 0, 0.3) 0%,
+      transparent 60%
+    );
+  pointer-events: none;
+}
+
+/* METALLIC TEXT EFFECT */
+.text-metallic {
+  background: linear-gradient(
+    180deg,
+    #E8E8E8 0%,
+    #A8A8A8 25%,
+    #C0C0C0 50%,
+    #808080 75%,
+    #B0B0B0 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* CRUMPLED PAPER TEXTURE */
+.paper-texture {
+  background: 
+    linear-gradient(135deg, transparent 25%, rgba(0,0,0,0.04) 25%, rgba(0,0,0,0.04) 50%, transparent 50%, transparent 75%, rgba(0,0,0,0.04) 75%),
+    linear-gradient(45deg, transparent 25%, rgba(0,0,0,0.04) 25%, rgba(0,0,0,0.04) 50%, transparent 50%, transparent 75%, rgba(0,0,0,0.04) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+/* ENVELOPE SHADOW DEPTH */
+.envelope-shadow {
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 5px 15px rgba(0, 0, 0, 0.2),
+    inset 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* GLOWING HEART SEAL */
+.heart-seal {
+  filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.6));
 }
